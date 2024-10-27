@@ -17,7 +17,15 @@ const discountCodesLength = discountCodes.length;
 
 // Services and prices
 const services = [
-    { name: 'Backend Development,', servicePrice: 20.50 },
+    { name: 'Backend Development', servicePrice: 20.50 },
     { name: 'Frontend Development', servicePrice: 15.30 },
     { name: 'Project Analysis', servicePrice: 33.60 }
 ];
+
+// Add options in services selection
+for (const element of services) {
+    const option = document.createElement('option');
+    option.value = element.name.toLowerCase();
+    option.textContent = element.name;
+    serviceSelect.appendChild(option);
+};
