@@ -44,50 +44,83 @@
             </div>
         </nav>
     </header>
-    <main class="container mt-4">
+    <main class="container lg-4">
         <h2>Richiesta Preventivo</h2>
         <p>Compila il form per richiedere un preventivo per i nostri servizi di sviluppo.</p>
         <div class="row">
-            <!-- Form -->
-            <form action="#">
-                <div class="mb-3">
-                    <label for="firstName" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="firstName" required>
-                </div>
-                <div class="mb-3">
-                    <label for="lastName" class="form-label">Cognome</label>
-                    <input type="text" class="form-control" id="lastName" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="service">Tipo di lavoro</label>
-                    <select class="form-select mt-2" id="service" required>
-                        <option value="" selected disabled>Seleziona il tipo di lavoro</option>
-                        <option value="">Sviuluppo backend</option>
-                        <option value="">Sviuluppo frontend</option>
-                        <option value="">Analisi progettuale</option>
-                    </select>
-                </div>
-                <label for="textArea" class="mb-2">Text area con Bootsrap 5</label>
-                <div class="form-floating mb-3">
-                    <textarea class="form-control" placeholder="Leave a comment here" id="textArea"
-                        style="height: 100px" maxlength="100"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="promoCode" class="form-label">Codice Promozionale (opzionale)</label>
-                    <input type="text" class="form-control" id="promoCode">
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="policyBox" required>
-                    <label class="form-check-label" for="policyBox">Accetto la Privacy Policy</label>
-                </div>
-                <div class="my-4 text-center">
-                    <button type="submit" class="btn btn-primary">Calcolo preventivo</button>
-                </div>
-            </form>
+            <div class="col-lg-8">
+                <!-- Form -->
+                <form action="#" id="myForm">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="firstName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Cognome</label>
+                        <input type="text" class="form-control" id="lastName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="service">Tipo di lavoro</label>
+                        <select class="form-select mt-2" id="service" required>
+                            <option value="" selected disabled>Seleziona il tipo di lavoro</option>
+                            <option value="">Sviuluppo backend</option>
+                            <option value="">Sviuluppo frontend</option>
+                            <option value="">Analisi progettuale</option>
+                        </select>
+                    </div>
+                    <label for="textArea" class="mb-2">Text area con Bootsrap 5</label>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="textArea"
+                            style="height: 100px" maxlength="100"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="promoCode" class="form-label">Codice Promozionale (opzionale)</label>
+                        <input type="text" class="form-control" id="promoCode">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="policyBox" required>
+                        <label class="form-check-label" for="policyBox">Accetto la Privacy Policy</label>
+                    </div>
+                    <div class="row mb-5">
+                        <!-- Submit button -->
+                        <div class="col-lg-6 my-4 text-center mx-md-auto">
+                            <button type="submit" class="btn btn-primary">Calcolo preventivo</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <!-- Show final price box -->
+                            <div class="text-center" id="displayPrice">
+                                <h4>Prezzo finale</h4>
+                                <strong id="showPrice">200</strong>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3 " id="unvalidCode">prova area codice promo invalido</div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-4">
+                <!-- Contacts card -->
+                <section class="container mb-5">
+                    <div class="card mx-auto"  style="max-width: 300px;">
+                        <img src="img/300x200.jpg"
+                            class="card-img-top" alt="300x200 img">
+                        <div class="card-body">
+                            <h5 class="card-title">I nostri contatti</h5>
+                            <p class="card-text">Se hai bisogno di aiuto puoi contattari:</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">help@boolfactory.test</li>
+                            <li class="list-group-item">+1122334455</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Help desk</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
     </main>
     <footer></footer>
