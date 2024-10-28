@@ -39,8 +39,20 @@ myForm.addEventListener('submit', function (event){
     console.log(email.value);
     console.log(serviceSelect.value);
     
+    clearForm();
+});
+
+/********
+FUNCTIONS
+********/
+
+// Clear form from input values
+function clearForm(){
     firstName.value = '';
     lastName.value = '';
     email.value = '';
     serviceSelect.value = '';
-})
+    textArea.value = '';
+    promoCode.value = '';
+    checkBox.checked = false;
+};
