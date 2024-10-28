@@ -73,14 +73,28 @@ function validateForm() {
 
     let valid = true;
     let message = '';
-    
+
+    function containsNumbers(str) {
+        for (let i = 0; i < str.length; i++) {
+            if (!isNaN(str[i]) && str[i] !== ' ') {
+                return true;
+            }
+        }
+        return false;
+    }
 
     if (firstNameValue === '') {
         message += 'Il campo Nome è obbligatorio. <br>';
         valid = false;
+    } else if (containsNumbers(firstNameValue)) {
+        message += 'Il campo Nome non può contenere numeri. <br>';
+        valid = false;
     }
     if (lastNameValue === '') {
         message += 'Il campo Cognome è obbligatorio. <br>';
+        valid = false;
+    } else if (containsNumbers(lastNameValue)) {
+        message += 'Il campo Cognome non può contenere numeri. <br>';
         valid = false;
     }
     if (emailValue === '') {
