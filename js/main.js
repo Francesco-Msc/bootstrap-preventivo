@@ -29,3 +29,18 @@ for (const element of services) {
     option.textContent = element.name;
     serviceSelect.appendChild(option);
 };
+
+myForm.addEventListener('submit', function (event){
+    event.preventDefault();
+
+    console.log('ho i dati del form');
+    console.log(firstName.value);
+    console.log(lastName.value);
+    console.log(email.value);
+    console.log(serviceSelect.value);
+    
+    firstName.value = '';
+    lastName.value = '';
+    email.value = '';
+    serviceSelect.value = '';
+})
