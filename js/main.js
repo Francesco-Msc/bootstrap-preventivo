@@ -34,6 +34,10 @@ const servicesLenght = serviceSelect.length;
 myForm.addEventListener('submit', function (event){
     event.preventDefault();
 
+    if (!validateForm()) {
+        return;
+    }
+
     let serviceType = serviceSelect.value.toLowerCase();
     let price = calculatePrice(serviceType);
     
@@ -59,6 +63,45 @@ myForm.addEventListener('submit', function (event){
 /********
 FUNCTIONS
 ********/
+
+// Form validator
+function validateForm() {
+    const firstNameValue = firstName.value.trim();
+    const lastNameValue = lastName.value.trim();
+    const emailValue = email.value.trim();
+    const serviceValue = serviceSelect.value;
+
+    let valid = true;
+    let message = '';
+
+    if (firstNameValue === '') {
+        message += 'Il campo Nome è obbligatorio. <br>';
+        valid = false;
+    }
+    if (lastNameValue === '') {
+        message += 'Il campo Cognome è obbligatorio. <br>';
+        valid = false;
+    }
+    if (emailValue === '') {
+        message += 'Il campo Email è obbligatorio. <br>';
+        valid = false;
+    }
+    if (serviceValue === '') {
+        message += 'Il campo tipo di lavoro è obbligatorio. <br>';
+        valid = false;
+    }
+    if (!checkBox.checked) {
+        message += 'Accetta la privacy policy. <br>';
+        valid = false
+    }
+
+    if (!valid) {
+        unvalidCode.innerHTML = message;
+        unvalidCode.classList.remove('d-none');
+    }
+
+    return valid;
+}
 
 // Calculate the full price
 function calculatePrice(serviceType) {
