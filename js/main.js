@@ -93,7 +93,7 @@ function validateForm() {
     }
     if (!checkBox.checked) {
         message += 'Accetta la privacy policy. <br>';
-        valid = false
+        valid = false;
     }
 
     if (!valid) {
