@@ -34,12 +34,14 @@ const servicesLenght = serviceSelect.length;
 myForm.addEventListener('submit', function (event){
     event.preventDefault();
 
-    console.log('ho i dati del form');
-
     let serviceType = serviceSelect.value.toLowerCase();
     let price = calculatePrice(serviceType);
     console.log(price);
     
+    const priceFormatted = price.toFixed(2).split('.');
+    showPrice.innerHTML = `€<span class="fs-4">${priceFormatted[0]}</span><span class="text-body-tertiary">,${priceFormatted[1]}</span>`;
+
+    displayPrice.classList.remove('d-none');
     
     clearForm();
 });
