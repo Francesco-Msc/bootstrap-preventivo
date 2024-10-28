@@ -29,15 +29,17 @@ for (const element of services) {
     option.textContent = element.name;
     serviceSelect.appendChild(option);
 };
+const servicesLenght = serviceSelect.length;
 
 myForm.addEventListener('submit', function (event){
     event.preventDefault();
 
     console.log('ho i dati del form');
-    console.log(firstName.value);
-    console.log(lastName.value);
-    console.log(email.value);
-    console.log(serviceSelect.value);
+
+    let serviceType = serviceSelect.value.toLowerCase();
+    let price = calculatePrice(serviceType);
+    console.log(price);
+    
     
     clearForm();
 });
@@ -45,6 +47,16 @@ myForm.addEventListener('submit', function (event){
 /********
 FUNCTIONS
 ********/
+
+// Calculate the full price
+function calculatePrice(serviceType) {
+    for (let i = 0; i < servicesLenght; i++) {
+        if (services[i].name.toLowerCase() === serviceType) {
+            return services[i].servicePrice * 10;
+        }
+    }
+    return 0;
+};
 
 // Clear form from input values
 function clearForm(){
