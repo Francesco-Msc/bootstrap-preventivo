@@ -7,7 +7,7 @@ const promoCode = document.getElementById('promoCode');
 const displayPrice = document.getElementById('displayPrice');
 const showPrice = document.getElementById('showPrice');
 const serviceSelect = document.getElementById('service');
-const unvalidCode = document.getElementById('unvalidCode');
+const invalidCode = document.getElementById('invalidCode');
 const checkBox = document.getElementById('policyBox');
 
 // Discount percentage and codes
@@ -29,7 +29,7 @@ for (const element of services) {
     option.textContent = element.name;
     serviceSelect.appendChild(option);
 };
-const servicesLenght = serviceSelect.length;
+const servicesLength = serviceSelect.length;
 
 myForm.addEventListener('submit', function (event){
     event.preventDefault();
@@ -41,14 +41,14 @@ myForm.addEventListener('submit', function (event){
     let serviceType = serviceSelect.value.toLowerCase();
     let price = calculatePrice(serviceType);
     
-    unvalidCode.classList.add('d-none');
+    invalidCode.classList.add('d-none');
     const enteredPromoCode = promoCode.value.trim();
     if (enteredPromoCode !== '') {
         if (isPromoCodeValid(enteredPromoCode)) {
             price = applyDiscount(price);
         } else {
-            unvalidCode.innerHTML = 'Il codice promozionale inserito non è valido, il prezzo non ha sconto applicato.';
-            unvalidCode.classList.remove('d-none');
+            invalidCode.innerHTML = 'Il codice promozionale inserito non è valido, il prezzo non ha sconto applicato.';
+            invalidCode.classList.remove('d-none');
         }
     };
 
@@ -73,6 +73,7 @@ function validateForm() {
 
     let valid = true;
     let message = '';
+    
 
     if (firstNameValue === '') {
         message += 'Il campo Nome è obbligatorio. <br>';
@@ -96,8 +97,8 @@ function validateForm() {
     }
 
     if (!valid) {
-        unvalidCode.innerHTML = message;
-        unvalidCode.classList.remove('d-none');
+        invalidCode.innerHTML = message;
+        invalidCode.classList.remove('d-none');
     }
 
     return valid;
@@ -105,7 +106,7 @@ function validateForm() {
 
 // Calculate the full price
 function calculatePrice(serviceType) {
-    for (let i = 0; i < servicesLenght; i++) {
+    for (let i = 0; i < servicesLength; i++) {
         if (services[i].name.toLowerCase() === serviceType) {
             return services[i].servicePrice * 10;
         }
