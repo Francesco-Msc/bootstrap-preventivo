@@ -42,7 +42,7 @@ myForm.addEventListener('submit', function (event){
     let price = calculatePrice(serviceType);
     
     unvalidCode.classList.add('d-none');
-    const enteredPromoCode = promoCode.value;
+    const enteredPromoCode = promoCode.value.trim();
     if (enteredPromoCode !== '') {
         if (isPromoCodeValid(enteredPromoCode)) {
             price = applyDiscount(price);
