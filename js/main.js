@@ -39,12 +39,12 @@ myForm.addEventListener('submit', function (event){
     }
 
     const serviceType = serviceSelect.value.toLowerCase();
-    let price = calculatePrice(serviceType);
+    let price = calculatePrice(serviceType, services);
     
     invalidCode.classList.add('d-none');
     const enteredPromoCode = promoCode.value.trim();
     if (enteredPromoCode !== '') {
-        if (isPromoCodeValid(enteredPromoCode)) {
+        if (isPromoCodeValid(enteredPromoCode, discountCodes)) {
             price = applyDiscount(price);
         } else {
             invalidCode.innerHTML = 'Il codice promozionale inserito non è valido, il prezzo non ha sconto applicato.';
@@ -120,20 +120,20 @@ function validateForm() {
 }
 
 // Calculate the full price
-function calculatePrice(serviceType) {
+function calculatePrice(serviceType, servicesList) {
     for (let i = 0; i < servicesLength; i++) {
-        if (services[i].name.toLowerCase() === serviceType) {
-            return services[i].servicePrice * 10;
+        if (servicesList[i].name.toLowerCase() === serviceType) {
+            return servicesList[i].servicePrice * 10;
         }
     }
     return 0;
 };
 
 // Promo code validator
-function isPromoCodeValid(code) {
+function isPromoCodeValid(code, codes) {
     code = code.toLowerCase();
     for (let i = 0; i < discountCodesLength; i++) {
-        if (discountCodes[i].toLowerCase() === code) {
+        if (codes[i].toLowerCase() === code) {
             return true;
         }
     }
