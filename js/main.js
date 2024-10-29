@@ -38,7 +38,7 @@ myForm.addEventListener('submit', function (event){
         return;
     }
 
-    let serviceType = serviceSelect.value.toLowerCase();
+    const serviceType = serviceSelect.value.toLowerCase();
     let price = calculatePrice(serviceType);
     
     invalidCode.classList.add('d-none');
@@ -64,6 +64,16 @@ myForm.addEventListener('submit', function (event){
 FUNCTIONS
 ********/
 
+// Verify if string contains numbers
+function containsNumbers(str) {
+    for (let i = 0; i < str.length; i++) {
+        if (!isNaN(str[i]) && str[i] !== ' ') {
+            return true;
+        }
+    }
+    return false;
+}
+
 // Form validator
 function validateForm() {
     const firstNameValue = firstName.value.trim();
@@ -73,15 +83,6 @@ function validateForm() {
 
     let valid = true;
     let message = '';
-
-    function containsNumbers(str) {
-        for (let i = 0; i < str.length; i++) {
-            if (!isNaN(str[i]) && str[i] !== ' ') {
-                return true;
-            }
-        }
-        return false;
-    }
 
     if (firstNameValue === '') {
         message += 'Il campo Nome è obbligatorio. <br>';
