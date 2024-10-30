@@ -38,6 +38,16 @@ for (const element of services) {
 };
 const servicesLength = serviceSelect.length;
 
+// Instant validation displayer
+firstName.addEventListener('input', function() {
+    validateName(firstName);
+});
+
+lastName.addEventListener('input', function() {
+    validateName(lastName);
+});
+
+
 myForm.addEventListener('submit', function (event){
     event.preventDefault();
 
@@ -81,7 +91,7 @@ function containsNumbers(str) {
         }
     }
     return false;
-}
+};
 
 // Form validator
 function validateForm() {
@@ -151,7 +161,7 @@ function validateForm() {
     }
 
     return valid;
-}
+};
 
 // Calculate the full price
 function calculatePrice(serviceType, servicesList) {
@@ -172,13 +182,13 @@ function isPromoCodeValid(code, codes) {
         }
     }
     return false;
-}
+};
 
 // Discount apply
 function applyDiscount(price) {
     const discountAmount = (price * discountPercentage) / 100;
     return price - discountAmount;
-}
+};
 
 // Clear form from input values
 function clearForm(){
@@ -198,4 +208,17 @@ function clearValidation() {
     email.classList.remove('is-invalid', 'is-valid');
     serviceSelect.classList.remove('is-invalid', 'is-valid');
     checkBox.classList.remove('is-invalid');
-}
+};
+
+// Validate name for instant dispaly feedback
+function validateName(inputField) {
+    const inputValue = inputField.value.trim();
+
+    if (inputValue !== '' && !containsNumbers(inputValue)) {
+        inputField.classList.remove('is-invalid');
+        inputField.classList.add('is-valid');
+    } else {
+        inputField.classList.remove('is-valid');
+        inputField.classList.add('is-invalid');
+    }
+};
