@@ -10,6 +10,13 @@ const serviceSelect = document.getElementById('service');
 const invalidCode = document.getElementById('invalidCode');
 const checkBox = document.getElementById('policyBox');
 
+// Variables for errors display
+const firstNameError = document.getElementById('firstNameError');
+const lastNameError = document.getElementById('lastNameError');
+const emailError = document.getElementById('emailError');
+const serviceError = document.getElementById('serviceError');
+const policyError = document.getElementById('policyError');
+
 // Discount percentage and codes
 const discountPercentage = 25;
 const discountCodes = ['YHDNU32', 'JANJC63', 'PWKCN25', 'SJDPO96', 'POCIE24'];
@@ -40,6 +47,8 @@ myForm.addEventListener('submit', function (event){
 
     const serviceType = serviceSelect.value.toLowerCase();
     let price = calculatePrice(serviceType, services);
+
+    clearValidation();
     
     invalidCode.classList.add('d-none');
     const enteredPromoCode = promoCode.value.trim();
@@ -82,38 +91,63 @@ function validateForm() {
     const serviceValue = serviceSelect.value;
 
     let valid = true;
-    let message = '';
 
+    // Name validation
     if (firstNameValue === '') {
-        message += 'Il campo Nome è obbligatorio. <br>';
+        firstName.classList.add('is-invalid');
+        firstNameError.innerHTML = 'Il campo Nome è obbligatorio.';
         valid = false;
     } else if (containsNumbers(firstNameValue)) {
-        message += 'Il campo Nome non può contenere numeri. <br>';
+        firstName.classList.add('is-invalid');
+        firstNameError.innerHTML = 'Il campo Nome non può contenere numeri.';
         valid = false;
-    }
-    if (lastNameValue === '') {
-        message += 'Il campo Cognome è obbligatorio. <br>';
-        valid = false;
-    } else if (containsNumbers(lastNameValue)) {
-        message += 'Il campo Cognome non può contenere numeri. <br>';
-        valid = false;
-    }
-    if (emailValue === '') {
-        message += 'Il campo Email è obbligatorio. <br>';
-        valid = false;
-    }
-    if (serviceValue === '') {
-        message += 'Il campo tipo di lavoro è obbligatorio. <br>';
-        valid = false;
-    }
-    if (!checkBox.checked) {
-        message += 'Accetta la privacy policy. <br>';
-        valid = false;
+    } else {
+        firstName.classList.remove('is-invalid');
+        firstName.classList.add('is-valid');
     }
 
-    if (!valid) {
-        invalidCode.innerHTML = message;
-        invalidCode.classList.remove('d-none');
+    // Last name validation
+    if (lastNameValue === '') {
+        lastName.classList.add('is-invalid');
+        lastNameError.innerHTML = 'Il campo Cognome è obbligatorio.';
+        valid = false;
+    } else if (containsNumbers(lastNameValue)) {
+        lastName.classList.add('is-invalid');
+        lastNameError.innerHTML = 'Il campo Cognome non può contenere numeri.';
+        valid = false;
+    } else {
+        lastName.classList.remove('is-invalid');
+        lastName.classList.add('is-valid');
+    }
+
+    // Email validation
+    if (emailValue === '') {
+        email.classList.add('is-invalid');
+        emailError.innerHTML = 'Il campo Email è obbligatorio.';
+        valid = false;
+    } else {
+        email.classList.remove('is-invalid');
+        email.classList.add('is-valid');
+    }
+
+    // Service validation
+    if (serviceValue === '') {
+        serviceSelect.classList.add('is-invalid');
+        serviceError.innerHTML = 'Il campo Tipo di Lavoro è obbligatorio.';
+        valid = false;
+    } else {
+        serviceSelect.classList.remove('is-invalid');
+        serviceSelect.classList.add('is-valid');
+    }
+
+    // Policy check validation
+    if (!checkBox.checked) {
+        checkBox.classList.add('is-invalid');
+        policyError.innerHTML = 'Devi accettare la Privacy Policy.';
+        valid = false;
+    } else {
+        checkBox.classList.remove('is-invalid');
+        checkBox.classList.add('is-valid');
     }
 
     return valid;
@@ -156,3 +190,12 @@ function clearForm(){
     promoCode.value = '';
     checkBox.checked = false;
 };
+
+// Clear validation fields
+function clearValidation() {
+    firstName.classList.remove('is-invalid', 'is-valid');
+    lastName.classList.remove('is-invalid', 'is-valid');
+    email.classList.remove('is-invalid', 'is-valid');
+    serviceSelect.classList.remove('is-invalid', 'is-valid');
+    checkBox.classList.remove('is-invalid');
+}

@@ -50,24 +50,31 @@
                 <h2>Richiesta Preventivo</h2>
                 <p>Compila il form per richiedere un preventivo per i nostri servizi di sviluppo.</p>
                 <!-- Form -->
-                <form action="#" id="myForm">
+                <form class="needs-validation" action="#" id="myForm" novalidate>
                     <div class="mb-3">
                         <label for="firstName" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="firstName" maxlength="50" required>
+                        <div class="invalid-feedback" id="firstNameError"></div>
+                        <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Cognome</label>
                         <input type="text" class="form-control" id="lastName" maxlength="50" required>
+                        <div class="invalid-feedback" id="lastNameError"></div>
+                        <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" required>
+                        <div class="invalid-feedback">Il campo Email è obbligatorio.</div>
+                        <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
                         <label for="service">Tipo di lavoro</label>
                         <select class="form-select mt-2" id="service" required>
                             <option value="" selected disabled>Seleziona il tipo di lavoro</option>
                         </select>
+                        <div class="invalid-feedback">Il campo tipo di lavoro è obbligatorio.</div>
                     </div>
                     <label for="textArea" class="mb-2">Text area con Bootsrap 5</label>
                     <div class="form-floating mb-3">
@@ -81,6 +88,7 @@
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="policyBox" required>
                         <label class="form-check-label" for="policyBox">Accetto la Privacy Policy</label>
+                        <div class="invalid-feedback" id="policyError">Devi accettare la Privacy Policy.</div>
                     </div>
                     <div class="row mb-5">
                         <!-- Submit button -->
