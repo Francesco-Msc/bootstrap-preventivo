@@ -10,6 +10,9 @@ const serviceSelect = document.getElementById('service');
 const invalidCode = document.getElementById('invalidCode');
 const checkBox = document.getElementById('policyBox');
 
+// Email regex validation
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 // Variables for errors display
 const firstNameError = document.getElementById('firstNameError');
 const lastNameError = document.getElementById('lastNameError');
@@ -38,19 +41,22 @@ for (const element of services) {
 };
 const servicesLength = serviceSelect.length;
 
-// Instant validation displayer
+// Instant validation displayers
 firstName.addEventListener('input', function() {
-    validateName(firstName);
+    validateInput(firstName);
 });
-
 lastName.addEventListener('input', function() {
-    validateName(lastName);
+    validateInput(lastName);
 });
-
-email.addEventListener('input', function () {
+email.addEventListener('input', function() {
     validateEmail(email);
 });
-
+serviceSelect.addEventListener('change', function() {
+    validateChange(serviceSelect);
+});
+checkBox.addEventListener('change', function() {
+    validateChange(checkBox);
+});
 
 myForm.addEventListener('submit', function (event){
     event.preventDefault();
@@ -118,6 +124,7 @@ function validateForm() {
     } else {
         firstName.classList.remove('is-invalid');
         firstName.classList.add('is-valid');
+        firstNameError.innerHTML = '';
     }
 
     // Last name validation
@@ -132,16 +139,22 @@ function validateForm() {
     } else {
         lastName.classList.remove('is-invalid');
         lastName.classList.add('is-valid');
+        lastNameError.innerHTML = '';
     }
 
     // Email validation
     if (emailValue === '') {
         email.classList.add('is-invalid');
-        emailError.innerHTML = 'Il campo Email è obbligatorio.';
+        emailError.innerHTML = 'Il campo email è obbligatorio.';
+        valid = false;
+    } else if (!emailRegex.test(emailValue)) {
+        email.classList.add('is-invalid');
+        emailError.innerHTML = "Inserisci un'email valida.";
         valid = false;
     } else {
         email.classList.remove('is-invalid');
         email.classList.add('is-valid');
+        emailError.innerHTML = '';
     }
 
     // Service validation
@@ -152,6 +165,7 @@ function validateForm() {
     } else {
         serviceSelect.classList.remove('is-invalid');
         serviceSelect.classList.add('is-valid');
+        serviceError.innerHTML = '';
     }
 
     // Policy check validation
@@ -162,6 +176,7 @@ function validateForm() {
     } else {
         checkBox.classList.remove('is-invalid');
         checkBox.classList.add('is-valid');
+        policyError.innerHTML = '';
     }
 
     return valid;
@@ -214,8 +229,8 @@ function clearValidation() {
     checkBox.classList.remove('is-invalid');
 };
 
-// Validate name for instant dispaly feedback
-function validateName(inputField) {
+// Validate name for instant dispalyer
+function validateInput(inputField) {
     const inputValue = inputField.value.trim();
 
     if (inputValue !== '' && !containsNumbers(inputValue)) {
@@ -227,10 +242,10 @@ function validateName(inputField) {
     }
 };
 
-// Email validation with regex method
+// Validate email with regex for instant dispayer
 function validateEmail(inputField) {
     const emailValue = inputField.value.trim();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    emailRegex;
 
     if (emailValue === '') {
         inputField.classList.remove('is-valid');
@@ -241,5 +256,18 @@ function validateEmail(inputField) {
     } else {
         inputField.classList.remove('is-valid');
         inputField.classList.add('is-invalid');
+    }
+};
+
+// validate service for instant displayer
+function validateChange(inputField) {
+    const serviceValue = inputField.value;
+
+    inputField.classList.remove('is-valid', 'is-invalid');
+
+    if (serviceValue === '') {
+        inputField.classList.add('is-invalid');
+    } else {
+        inputField.classList.add('is-valid');
     }
 }

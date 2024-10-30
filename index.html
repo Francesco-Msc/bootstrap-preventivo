@@ -66,7 +66,7 @@
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" required>
-                        <div class="invalid-feedback">Il campo Email è obbligatorio.</div>
+                        <div class="invalid-feedback" id="emailError"></div>
                         <div class="valid-feedback"></div>
                     </div>
                     <div class="mb-3">
@@ -74,7 +74,7 @@
                         <select class="form-select mt-2" id="service" required>
                             <option value="" selected disabled>Seleziona il tipo di lavoro</option>
                         </select>
-                        <div class="invalid-feedback">Il campo tipo di lavoro è obbligatorio.</div>
+                        <div class="invalid-feedback" id="serviceError"></div>
                     </div>
                     <label for="textArea" class="mb-2">Text area con Bootsrap 5</label>
                     <div class="form-floating mb-3">
@@ -88,7 +88,7 @@
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="policyBox" required>
                         <label class="form-check-label" for="policyBox">Accetto la Privacy Policy</label>
-                        <div class="invalid-feedback" id="policyError">Devi accettare la Privacy Policy.</div>
+                        <div class="invalid-feedback" id="policyError"></div>
                     </div>
                     <div class="row mb-5">
                         <!-- Submit button -->
