@@ -226,7 +226,7 @@ function clearValidation() {
     lastName.classList.remove('is-invalid', 'is-valid');
     email.classList.remove('is-invalid', 'is-valid');
     serviceSelect.classList.remove('is-invalid', 'is-valid');
-    checkBox.classList.remove('is-invalid');
+    checkBox.classList.remove('is-invalid', 'is-valid');
 };
 
 // Validate name for instant dispalyer
