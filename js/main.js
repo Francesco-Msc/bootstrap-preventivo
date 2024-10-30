@@ -47,6 +47,10 @@ lastName.addEventListener('input', function() {
     validateName(lastName);
 });
 
+email.addEventListener('input', function () {
+    validateEmail(email);
+});
+
 
 myForm.addEventListener('submit', function (event){
     event.preventDefault();
@@ -222,3 +226,20 @@ function validateName(inputField) {
         inputField.classList.add('is-invalid');
     }
 };
+
+// Email validation with regex method
+function validateEmail(inputField) {
+    const emailValue = inputField.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailValue === '') {
+        inputField.classList.remove('is-valid');
+        inputField.classList.add('is-invalid');
+    } else if (emailRegex.test(emailValue)) {
+        inputField.classList.remove('is-invalid');
+        inputField.classList.add('is-valid');
+    } else {
+        inputField.classList.remove('is-valid');
+        inputField.classList.add('is-invalid');
+    }
+}
